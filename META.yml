@@ -1,0 +1,21 @@
+---
+abstract: 'make an educated guess about the shell in use'
+author:
+  - 'Graham Ollis <plicease@cpan.org>'
+build_requires:
+  Test::More: 0
+configure_requires:
+  ExtUtils::MakeMaker: 6.30
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 4.300028, CPAN::Meta::Converter version 2.120921'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Shell-Guess
+requires:
+  File::Spec: 0
+resources:
+  bugtracker: https://github.com/plicease/Shell-Guess/issues
+  repository: git://github.com/plicease/Shell-Guess.git
+version: 0.01

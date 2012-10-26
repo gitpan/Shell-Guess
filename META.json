@@ -1,0 +1,46 @@
+{
+   "abstract" : "make an educated guess about the shell in use",
+   "author" : [
+      "Graham Ollis <plicease@cpan.org>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Dist::Zilla version 4.300028, CPAN::Meta::Converter version 2.120921",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Shell-Guess",
+   "prereqs" : {
+      "configure" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : "6.30"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "File::Spec" : "0"
+         }
+      },
+      "test" : {
+         "requires" : {
+            "Test::More" : "0"
+         }
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/plicease/Shell-Guess/issues"
+      },
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/plicease/Shell-Guess.git",
+         "web" : "https://github.com/plicease/Shell-Guess"
+      }
+   },
+   "version" : "0.01"
+}
+
