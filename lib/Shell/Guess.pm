@@ -4,8 +4,10 @@ use strict;
 use warnings;
 use File::Spec;
 
+# TODO: see where we can use P9Y::ProcessTable
+
 # ABSTRACT: make an educated guess about the shell in use
-our $VERSION = '0.01'; # VERSION
+our $VERSION = '0.02'; # VERSION
 
 
 sub _win32_getppid
@@ -121,6 +123,9 @@ sub command_shell { bless { command => 1, win32 => 1, name => 'command', default
 sub dcl_shell { bless { dcl => 1, vms => 1, name => 'dcl' }, __PACKAGE__ }
 
 
+sub fish_shell { bless { fish => 1, unix => 1, name => 'fish' }, __PACKAGE__ }
+
+
 sub korn_shell { bless { korn => 1, bourne => 1, unix => 1, name => 'korn', default_location => '/bin/ksh' }, __PACKAGE__ }
 
 
@@ -133,7 +138,7 @@ sub tc_shell { bless { c => 1, tc => 1, unix => 1, name => 'tc', default_locatio
 sub z_shell { bless { z => 1, bourne => 1, unix => 1, name => 'z', default_location => '/bin/zsh' }, __PACKAGE__ }
 
 
-foreach my $type (qw( cmd command dcl bash korn c win32 unix vms bourne tc power z ))
+foreach my $type (qw( cmd command dcl bash fish korn c win32 unix vms bourne tc power z ))
 {
   eval qq{
     sub is_$type
@@ -172,6 +177,8 @@ sub _unixy_shells
   { return __PACKAGE__->bash_shell   }
   elsif($shell =~ /zsh$/)
   { return __PACKAGE__->z_shell      }
+  elsif($shell =~ /fish$/)
+  { return __PACKAGE__->fish_shell   }
   elsif($shell =~ /sh$/)
   { return __PACKAGE__->bourne_shell }
   else
@@ -184,13 +191,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Shell::Guess - make an educated guess about the shell in use
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =head1 SYNOPSIS
 
@@ -432,6 +441,22 @@ The following instance methods will return:
 
 All other instance methods will return false
 
+=head2 Shell::Guess-E<gt>fish_shell
+
+Returns an instance of Shell::Guess for the fish shell.
+
+The following instance methods will return:
+
+=over 4
+
+=item * $shell-E<gt>name = fish
+
+=item * $shell-E<gt>is_fish = 1
+
+=item * $shell-E<gt>is_unix = 1
+
+=back
+
 =head2 Shell::Guess-E<gt>korn_shell
 
 Returns an instance of Shell::Guess for the korn shell.
@@ -552,6 +577,10 @@ Returns true if the shell is the Windows cmd.com shell.
 
 Returns true if the shell is the OpenVMS dcl shell.
 
+=head2 $shell-E<gt>is_fish
+
+Returns true if the shell is Fish shell.
+
 =head2 $shell-E<gt>is_korn
 
 Returns true if the shell is the korn shell.
@@ -626,6 +655,8 @@ It is pretty easy to fool the -E<gt>running_shell method by using fork, or if yo
 is not otherwise being directly executed by the shell.
 
 Patches are welcome to make other platforms work more reliably.
+
+=cut
 
 =head1 AUTHOR
 

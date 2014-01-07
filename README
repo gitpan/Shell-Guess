@@ -1,10 +1,13 @@
 NAME
+
     Shell::Guess - make an educated guess about the shell in use
 
 VERSION
-    version 0.01
+
+    version 0.02
 
 SYNOPSIS
+
     guessing shell which called the Perl script:
 
      use Shell::Guess;
@@ -28,57 +31,57 @@ SYNOPSIS
      print $shell->name, "\n";
 
 DESCRIPTION
+
     Shell::Guess makes a reasonably aggressive attempt to determine the
     shell being employed by the user, either the shell that executed the
     perl script directly (the "running" shell), or the users' login shell
-    (the "login" shell). It does this by a variety of means available to it,
-    depending on the platform that it is running on.
+    (the "login" shell). It does this by a variety of means available to
+    it, depending on the platform that it is running on.
 
-    *   getpwent
+      * getpwent
 
-        On UNIXy systems with getpwent, that can be used to determine the
-        login shell.
+      On UNIXy systems with getpwent, that can be used to determine the
+      login shell.
 
-    *   dscl
+      * dscl
 
-        Under Mac OS X getpwent will typically not provide any useful
-        information, so the dscl command is used instead.
+      Under Mac OS X getpwent will typically not provide any useful
+      information, so the dscl command is used instead.
 
-    *   proc file systems
+      * proc file systems
 
-        On UNIXy systems with a proc filesystems (such as Linux),
-        Shell::Guess will attempt to use that to determine the running
-        shell.
+      On UNIXy systems with a proc filesystems (such as Linux),
+      Shell::Guess will attempt to use that to determine the running shell.
 
-    *   ps
+      * ps
 
-        On UNIXy systems without a proc filesystem, Shell::Guess will use
-        the ps command to determine the running shell.
+      On UNIXy systems without a proc filesystem, Shell::Guess will use the
+      ps command to determine the running shell.
 
-    *   Win32::Process::Info and Win32::Process::List
+      * Win32::Process::Info and Win32::Process::List
 
-        On Windows if these modules are installed they will be used to
-        determine the running shell. This method can differentiate between
-        PowerShell, "command.com" and "cmd.exe".
+      On Windows if these modules are installed they will be used to
+      determine the running shell. This method can differentiate between
+      PowerShell, command.com and cmd.exe.
 
-    *   ComSpec
+      * ComSpec
 
-        If the above method is inconclusive, the ComSpec environment
-        variable will be consulted to differentiate between "command.com" or
-        "cmd.exe" (PowerShell cannot be detected in this manner).
+      If the above method is inconclusive, the ComSpec environment variable
+      will be consulted to differentiate between command.com or cmd.exe
+      (PowerShell cannot be detected in this manner).
 
-    *   reasonable defaults
+      * reasonable defaults
 
-        If the running or login shell cannot be otherwise determined, a
-        reasonable default for your platform will be used as a fallback.
-        Under OpenVMS this is dcl, Windows 95/98 and MS-DOS this is
-        command.com and Windows NT/2000/XP/Vista/7 this is cmd.exe. UNIXy
-        platforms fallback to bourne shell.
+      If the running or login shell cannot be otherwise determined, a
+      reasonable default for your platform will be used as a fallback.
+      Under OpenVMS this is dcl, Windows 95/98 and MS-DOS this is
+      command.com and Windows NT/2000/XP/Vista/7 this is cmd.exe. UNIXy
+      platforms fallback to bourne shell.
 
-    The intended use of this module is to enable a Perl developer to write a
-    script that generates shell configurations for the calling shell so they
-    can be imported back into the calling shell using "eval" and backticks
-    or "source". For example, if your script looks like this:
+    The intended use of this module is to enable a Perl developer to write
+    a script that generates shell configurations for the calling shell so
+    they can be imported back into the calling shell using eval and
+    backticks or source. For example, if your script looks like this:
 
      #!/usr/bin/perl
      use Shell::Guess;
@@ -104,179 +107,205 @@ DESCRIPTION
     such shell configurations, and is designed to work with this module.
 
 CLASS METHODS
+
     These class methods return an instance of Shell::Guess, which can then
     be interrogated by the instance methods in the next section below.
 
-  Shell::Guess->running_shell
+ Shell::Guess->running_shell
+
     Returns an instance of Shell::Guess based on the shell which directly
     started the current Perl script. If the running shell cannot be
     determined, it will return the login shell.
 
-  Shell::Guess->login_shell( [ $username ] )
+ Shell::Guess->login_shell( [ $username ] )
+
     Returns an instance of Shell::Guess for the given user. If no username
     is specified then the current user will be used. If no shell can be
     guessed then a reasonable fallback will be chosen based on your
     platform.
 
-  Shell::Guess->bash_shell
+ Shell::Guess->bash_shell
+
     Returns an instance of Shell::Guess for bash.
 
     The following instance methods will return:
 
-    *   $shell->name = bash
+      * $shell->name = bash
 
-    *   $shell->is_bash = 1
+      * $shell->is_bash = 1
 
-    *   $shell->is_bourne = 1
+      * $shell->is_bourne = 1
 
-    *   $shell->is_unix = 1
+      * $shell->is_unix = 1
 
-    *   $shell->default_location = /bin/bash
+      * $shell->default_location = /bin/bash
 
     All other instance methods will return false
 
-  Shell::Guess->bourne_shell
+ Shell::Guess->bourne_shell
+
     Returns an instance of Shell::Guess for the bourne shell.
 
     The following instance methods will return:
 
-    *   $shell->name = bourne
+      * $shell->name = bourne
 
-    *   $shell->is_bourne = 1
+      * $shell->is_bourne = 1
 
-    *   $shell->is_unix = 1
+      * $shell->is_unix = 1
 
-    *   $shell->default_location = /bin/sh
+      * $shell->default_location = /bin/sh
 
     All other instance methods will return false
 
-  Shell::Guess->c_shell
+ Shell::Guess->c_shell
+
     Returns an instance of Shell::Guess for c shell.
 
     The following instance methods will return:
 
-    *   $shell->name = c
+      * $shell->name = c
 
-    *   $shell->is_c = 1
+      * $shell->is_c = 1
 
-    *   $shell->is_unix = 1
+      * $shell->is_unix = 1
 
-    *   $shell->default_location = /bin/csh
+      * $shell->default_location = /bin/csh
 
     All other instance methods will return false
 
-  Shell::Guess->cmd_shell
+ Shell::Guess->cmd_shell
+
     Returns an instance of Shell::Guess for the Windows NT cmd shell
     (cmd.exe).
 
     The following instance methods will return:
 
-    *   $shell->name = cmd
+      * $shell->name = cmd
 
-    *   $shell->is_cmd = 1
+      * $shell->is_cmd = 1
 
-    *   $shell->is_win32 = 1
+      * $shell->is_win32 = 1
 
-    *   $shell->default_location = C:\Windows\system32\cmd.exe
+      * $shell->default_location = C:\Windows\system32\cmd.exe
 
     All other instance methods will return false
 
-  Shell::Guess->command_shell
+ Shell::Guess->command_shell
+
     Returns an instance of Shell::Guess for the Windows 95 command shell
     (command.com).
 
     The following instance methods will return:
 
-    *   $shell->name = command
+      * $shell->name = command
 
-    *   $shell->is_command = 1
+      * $shell->is_command = 1
 
-    *   $shell->is_win32 = 1
+      * $shell->is_win32 = 1
 
-    *   $shell->default_location = C:\Windows\system32\command.com
+      * $shell->default_location = C:\Windows\system32\command.com
 
     All other instance methods will return false
 
-  Shell::Guess->dcl_shell
+ Shell::Guess->dcl_shell
+
     Returns an instance of Shell::Guess for the OpenVMS dcl shell.
 
     The following instance methods will return:
 
-    *   $shell->name = dcl
+      * $shell->name = dcl
 
-    *   $shell->is_dcl = 1
+      * $shell->is_dcl = 1
 
-    *   $shell->is_vms = 1
+      * $shell->is_vms = 1
 
     All other instance methods will return false
 
-  Shell::Guess->korn_shell
+ Shell::Guess->fish_shell
+
+    Returns an instance of Shell::Guess for the fish shell.
+
+    The following instance methods will return:
+
+      * $shell->name = fish
+
+      * $shell->is_fish = 1
+
+      * $shell->is_unix = 1
+
+ Shell::Guess->korn_shell
+
     Returns an instance of Shell::Guess for the korn shell.
 
     The following instance methods will return:
 
-    *   $shell->name = korn
+      * $shell->name = korn
 
-    *   $shell->is_korn = 1
+      * $shell->is_korn = 1
 
-    *   $shell->is_bourne = 1
+      * $shell->is_bourne = 1
 
-    *   $shell->is_unix = 1
+      * $shell->is_unix = 1
 
-    *   $shell->default_location = /bin/ksh
+      * $shell->default_location = /bin/ksh
 
     All other instance methods will return false
 
-  Shell::Guess->power_shell
+ Shell::Guess->power_shell
+
     Returns an instance of Shell::Guess for Windows PowerShell.
 
     The following instance methods will return:
 
-    *   $shell->name = power
+      * $shell->name = power
 
-    *   $shell->is_power = 1
+      * $shell->is_power = 1
 
-    *   $shell->is_win32 = 1
+      * $shell->is_win32 = 1
 
     All other instance methods will return false
 
-  Shell::Guess->tc_shell
+ Shell::Guess->tc_shell
+
     Returns an instance of Shell::Guess for tcsh.
 
     The following instance methods will return:
 
-    *   $shell->name = tc
+      * $shell->name = tc
 
-    *   $shell->is_tc = 1
+      * $shell->is_tc = 1
 
-    *   $shell->is_c = 1
+      * $shell->is_c = 1
 
-    *   $shell->is_unix = 1
+      * $shell->is_unix = 1
 
-    *   $shell->default_location = /bin/tcsh
+      * $shell->default_location = /bin/tcsh
 
     All other instance methods will return false
 
-  Shell::Guess->z_shell
+ Shell::Guess->z_shell
+
     Returns an instance of Shell::Guess for zsh.
 
     The following instance methods will return:
 
-    *   $shell->name = z
+      * $shell->name = z
 
-    *   $shell->is_z = 1
+      * $shell->is_z = 1
 
-    *   $shell->is_bourne = 1
+      * $shell->is_bourne = 1
 
-    *   $shell->is_unix = 1
+      * $shell->is_unix = 1
 
-    *   $shell->default_location = /bin/zsh
+      * $shell->default_location = /bin/zsh
 
     All other instance methods will return false
 
 INSTANCE METHODS
+
     The normal way to call these is by calling them on the result of either
-    *running_shell* or *login_shell*, but they can also be called as class
+    running_shell or login_shell, but they can also be called as class
     methods, in which case the currently running shell will be used, so
 
      Shell::Guess->is_bourne
@@ -285,82 +314,102 @@ INSTANCE METHODS
 
      Shell::Guess->running_shell->is_bourne
 
-  $shell->is_bash
+ $shell->is_bash
+
     Returns true if the shell is bash.
 
-  $shell->is_bourne
-    Returns true if the shell is the bourne shell, or a shell which supports
-    bourne syntax (e.g. bash or korn).
+ $shell->is_bourne
 
-  $shell->is_c
+    Returns true if the shell is the bourne shell, or a shell which
+    supports bourne syntax (e.g. bash or korn).
+
+ $shell->is_c
+
     Returns true if the shell is csh, or a shell which supports csh syntax
     (e.g. tcsh).
 
-  $shell->is_cmd
+ $shell->is_cmd
+
     Returns true if the shell is the Windows command.com shell.
 
-  $shell->is_command
+ $shell->is_command
+
     Returns true if the shell is the Windows cmd.com shell.
 
-  $shell->is_dcl
+ $shell->is_dcl
+
     Returns true if the shell is the OpenVMS dcl shell.
 
-  $shell->is_korn
+ $shell->is_fish
+
+    Returns true if the shell is Fish shell.
+
+ $shell->is_korn
+
     Returns true if the shell is the korn shell.
 
-  $shell->is_power
+ $shell->is_power
+
     Returns true if the shell is Windows PowerShell.
 
-  $shell->is_tc
+ $shell->is_tc
+
     Returns true if the shell is tcsh.
 
-  $shell->is_unix
+ $shell->is_unix
+
     Returns true if the shell is traditionally a UNIX shell (e.g. bourne,
     bash, korn)
 
-  $shell->is_vms
+ $shell->is_vms
+
     Returns true if the shell is traditionally an OpenVMS shell (e.g. dcl)
 
-  $shell->is_win32
-    Returns true if the shell is traditionally a Windows shell (command.com,
-    cmd.exe)
+ $shell->is_win32
 
-  $shell->is_z
+    Returns true if the shell is traditionally a Windows shell
+    (command.com, cmd.exe)
+
+ $shell->is_z
+
     Returns true if the shell is zsh
 
-  $shell->name
+ $shell->name
+
     Returns the name of the shell.
 
-  $shell->default_location
+ $shell->default_location
+
     The usual location for this shell, for example /bin/sh for bourne shell
     and /bin/csh for c shell. May not be defined for all shells.
 
 CAVEATS
+
     Shell::Guess shouldn't ever die or crash, instead it will attempt to
     make a guess or use a fallback about either the login or running shell
     even on unsupported operating systems. The fallback is the most common
     shell on the particular platform that you are using, so on UNIXy
     platforms the fallback is bourne, and on OpenVMS the fallback is dcl.
 
-    These are the operating systems that have been tested in development and
-    are most likely to guess reliably.
+    These are the operating systems that have been tested in development
+    and are most likely to guess reliably.
 
-    *   Linux
+      * Linux
 
-    *   Cygwin
+      * Cygwin
 
-    *   FreeBSD
+      * FreeBSD
 
-    *   Mac OS X
+      * Mac OS X
 
-    *   Windows (Strawberry Perl)
+      * Windows (Strawberry Perl)
 
-    *   MS-DOS (djgpp)
+      * MS-DOS (djgpp)
 
-    *   OpenVMS
+      * OpenVMS
 
-        Always detected as dcl (a more nuanced view of OpenVMS is probably
-        possible, patches welcome).
+      Always detected as dcl (a more nuanced view of OpenVMS is probably
+      possible, patches welcome).
 
     UNIXy platforms without a proc filesystem will use Unix::Process if
     installed, which will execute ps to determine the running shell.
@@ -372,9 +421,11 @@ CAVEATS
     Patches are welcome to make other platforms work more reliably.
 
 AUTHOR
+
     Graham Ollis <plicease@cpan.org>
 
 COPYRIGHT AND LICENSE
+
     This software is copyright (c) 2012 by Graham Ollis.
 
     This is free software; you can redistribute it and/or modify it under

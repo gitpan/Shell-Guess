@@ -4,7 +4,7 @@
       "Graham Ollis <plicease@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.300028, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "Dist::Zilla version 5.008, CPAN::Meta::Converter version 2.133380",
    "license" : [
       "perl_5"
    ],
@@ -21,7 +21,8 @@
       },
       "runtime" : {
          "requires" : {
-            "File::Spec" : "0"
+            "File::Spec" : "0",
+            "perl" : "5.006"
          }
       },
       "test" : {
@@ -33,14 +34,15 @@
    "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "web" : "https://github.com/plicease/Shell-Guess/issues"
+         "web" : "https://github.com/plicease/shell-guess/issues"
       },
+      "homepage" : "http://perl.wdlabs.com/Shell-Guess/",
       "repository" : {
          "type" : "git",
-         "url" : "git://github.com/plicease/Shell-Guess.git",
-         "web" : "https://github.com/plicease/Shell-Guess"
+         "url" : "git://github.com/plicease/shell-guess.git",
+         "web" : "https://github.com/plicease/shell-guess"
       }
    },
-   "version" : "0.01"
+   "version" : "0.02"
 }
 
