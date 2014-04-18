@@ -1,10 +1,10 @@
 NAME
 
-    Shell::Guess - make an educated guess about the shell in use
+    Shell::Guess - Make an educated guess about the shell in use
 
 VERSION
 
-    version 0.02
+    version 0.02_01
 
 SYNOPSIS
 
@@ -422,7 +422,11 @@ CAVEATS
 
 AUTHOR
 
-    Graham Ollis <plicease@cpan.org>
+    author: Graham Ollis <plicease@cpan.org>
+
+    contributors:
+
+    Buddy Burden (BAREFOOT)
 
 COPYRIGHT AND LICENSE
 
