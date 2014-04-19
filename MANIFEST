@@ -8,6 +8,7 @@ META.json
 META.yml
 README
 dist.ini
+inc/DynamicConfig.pm
 inc/My/ModuleBuild.pm
 lib/Shell/Guess.pm
 t/00_diag.t

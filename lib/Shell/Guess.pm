@@ -7,7 +7,7 @@ use File::Spec;
 # TODO: see where we can use P9Y::ProcessTable
 
 # ABSTRACT: Make an educated guess about the shell in use
-our $VERSION = '0.02_01'; # VERSION
+our $VERSION = '0.02_02'; # VERSION
 
 
 sub _win32_getppid
@@ -199,7 +199,7 @@ Shell::Guess - Make an educated guess about the shell in use
 
 =head1 VERSION
 
-version 0.02_01
+version 0.02_02
 
 =head1 SYNOPSIS
 
