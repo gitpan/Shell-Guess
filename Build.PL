@@ -18,13 +18,12 @@ my %module_build_args = (
     "Graham Ollis <plicease\@cpan.org>"
   ],
   "dist_name" => "Shell-Guess",
-  "dist_version" => "0.02_02",
+  "dist_version" => "0.02_03",
   "license" => "perl",
   "module_name" => "Shell::Guess",
   "recommends" => {},
   "recursive_test_files" => 1,
   "requires" => {
-    "File::Spec" => 0,
     "perl" => "5.006"
   },
   "script_files" => [],

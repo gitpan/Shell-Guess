@@ -15,10 +15,9 @@ meta-spec:
   version: '1.4'
 name: Shell-Guess
 requires:
-  File::Spec: '0'
   perl: '5.006'
 resources:
   bugtracker: https://github.com/plicease/shell-guess/issues
   homepage: http://perl.wdlabs.com/Shell-Guess/
   repository: git://github.com/plicease/shell-guess.git
-version: 0.02_02
+version: 0.02_03

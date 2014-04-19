@@ -26,7 +26,6 @@
       },
       "runtime" : {
          "requires" : {
-            "File::Spec" : "0",
             "perl" : "5.006"
          }
       },
@@ -48,6 +47,6 @@
          "web" : "https://github.com/plicease/shell-guess"
       }
    },
-   "version" : "0.02_02"
+   "version" : "0.02_03"
 }
 
