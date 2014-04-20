@@ -20,4 +20,4 @@ resources:
   bugtracker: https://github.com/plicease/shell-guess/issues
   homepage: http://perl.wdlabs.com/Shell-Guess/
   repository: git://github.com/plicease/shell-guess.git
-version: 0.02_03
+version: '0.03'

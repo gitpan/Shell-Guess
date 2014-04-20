@@ -18,7 +18,7 @@ my %module_build_args = (
     "Graham Ollis <plicease\@cpan.org>"
   ],
   "dist_name" => "Shell-Guess",
-  "dist_version" => "0.02_03",
+  "dist_version" => "0.03",
   "license" => "perl",
   "module_name" => "Shell::Guess",
   "recommends" => {},
