@@ -7,7 +7,7 @@ use File::Spec;
 # TODO: see where we can use P9Y::ProcessTable
 
 # ABSTRACT: Make an educated guess about the shell in use
-our $VERSION = '0.03'; # VERSION
+our $VERSION = '0.04'; # VERSION
 
 
 sub _win32_getppid
@@ -53,6 +53,7 @@ sub running_shell
   my $shell = eval {
     open(my $fh, '<', File::Spec->catfile('', 'proc', getppid, 'cmdline')) || die;
     my $command_line = <$fh>;
+    die unless defined $command_line; # don't spew warnings if read failed
     close $fh;
     $command_line =~ s/\0.*$//;
     _unixy_shells($command_line);
@@ -199,7 +200,7 @@ Shell::Guess - Make an educated guess about the shell in use
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 SYNOPSIS
 

@@ -8,7 +8,7 @@ build_requires:
 configure_requires:
   Module::Build: '0.3601'
 dynamic_config: 1
-generated_by: 'Dist::Zilla version 5.015, CPAN::Meta::Converter version 2.140640'
+generated_by: 'Dist::Zilla version 5.019, CPAN::Meta::Converter version 2.141170'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -20,4 +20,4 @@ resources:
   bugtracker: https://github.com/plicease/shell-guess/issues
   homepage: http://perl.wdlabs.com/Shell-Guess/
   repository: git://github.com/plicease/shell-guess.git
-version: '0.03'
+version: '0.04'
