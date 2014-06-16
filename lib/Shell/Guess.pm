@@ -7,7 +7,7 @@ use File::Spec;
 # TODO: see where we can use P9Y::ProcessTable
 
 # ABSTRACT: Make an educated guess about the shell in use
-our $VERSION = '0.04'; # VERSION
+our $VERSION = '0.05'; # VERSION
 
 
 sub _win32_getppid
@@ -61,7 +61,8 @@ sub running_shell
   
   || eval {
     require Unix::Process;
-    my($command) = map { s/\s+.*$//; $_ } Unix::Process->command(getppid);
+    my $method = $^O eq 'solaris' ? 'comm' : 'command';
+    my($command) = map { s/\s+.*$//; $_ } Unix::Process->$method(getppid);
     _unixy_shells($command);
   };
   
@@ -200,7 +201,7 @@ Shell::Guess - Make an educated guess about the shell in use
 
 =head1 VERSION
 
-version 0.04
+version 0.05
 
 =head1 SYNOPSIS
 

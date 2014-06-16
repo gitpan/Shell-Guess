@@ -31,22 +31,22 @@
       },
       "test" : {
          "requires" : {
-            "Test::More" : "0"
+            "Test::More" : "0.94"
          }
       }
    },
    "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "web" : "https://github.com/plicease/shell-guess/issues"
+         "web" : "https://github.com/plicease/Shell-Guess/issues"
       },
-      "homepage" : "http://perl.wdlabs.com/Shell-Guess/",
+      "homepage" : "http://perl.wdlabs.com/Shell-Guess",
       "repository" : {
          "type" : "git",
-         "url" : "git://github.com/plicease/shell-guess.git",
-         "web" : "https://github.com/plicease/shell-guess"
+         "url" : "git://github.com/plicease/Shell-Guess.git",
+         "web" : "https://github.com/plicease/Shell-Guess"
       }
    },
-   "version" : "0.04"
+   "version" : "0.05"
 }
 

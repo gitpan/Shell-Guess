@@ -18,7 +18,7 @@ my %module_build_args = (
     "Graham Ollis <plicease\@cpan.org>"
   ],
   "dist_name" => "Shell-Guess",
-  "dist_version" => "0.04",
+  "dist_version" => "0.05",
   "license" => "perl",
   "module_name" => "Shell::Guess",
   "recommends" => {},
@@ -28,14 +28,14 @@ my %module_build_args = (
   },
   "script_files" => [],
   "test_requires" => {
-    "Test::More" => 0
+    "Test::More" => "0.94"
   }
 );
 
 
 my %fallback_build_requires = (
   "Module::Build" => "0.3601",
-  "Test::More" => 0
+  "Test::More" => "0.94"
 );
 
 
